@@ -3,14 +3,14 @@ import Sidebar from "../components/SideBar";
 import Topbar from "../components/TopBar";
 import Footer from "../components/Footer";
 import Content from "../components/Content";
-import { Redirect } from "react-router";
+// import { Redirect } from "react-router";
 
 const DefaultLayout = () => {
-  let user = JSON.parse(localStorage.getItem("user"));
+  // let user = JSON.parse(localStorage.getItem("user"));
 
-  if (!user) {
-    return <Redirect to="/Login" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/Login" />;
+  // }
 
   return (
     <div>
@@ -24,7 +24,7 @@ const DefaultLayout = () => {
             {/* Page Content  */}
             <div className="container-fluid">
               <Content />
-            </div>
+            </div> 
             {/* /.container-fluid  */}
           </div>
           {/* Footer  */}

@@ -8,38 +8,47 @@ import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
 import { ToastContainer, toast } from 'react-toastify';
-
-
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const Topbar = () => {
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // Người dùng đã đăng nhập
+        setUser(user);
+        console.log(user.multiFactor.user.accessToken)
+      } else {
+      //   // Người dùng đã đăng xuất
+      //   setUser(null);
+      }
+    });
 
+    // Hủy đăng ký lắng nghe khi component bị unmount
+    return () => unsubscribe();
+  }, []);
+  // const user = JSON.parse(localStorage.getItem("user"));
 
-  
-
-  
-  
-
-
-  if (!user) {
-    return <Redirect to="/Login" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/Login" />;
+  // }
 
   const handleLogout = () => {
     ApiService.Logout();
-    history.push("/Login");
+    firebase.auth().signOut();
+    history.push("/");
   }
  
-  // const refreshList = () => {
-  //   getNoti();
-  // };
+ 
 
 
   return (
+   
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
       {/* Topbar Navbar */}
       <ul className="navbar-nav ml-auto">
@@ -92,7 +101,9 @@ const Topbar = () => {
 
         </div>
         {/* User Information */}
+       
         <li className="nav-item dropdown no-arrow">
+       
           <a
             className="nav-link dropdown-toggle"
             href="/#"
@@ -102,15 +113,20 @@ const Topbar = () => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-              {user.fullName}
+          
+            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Emailse140xx.fpt.com
+              {/* {user.email} */}
             </span>
             <img
               className="img-profile rounded-circle"
-              src={user.image}
-              alt={user.image}
+              src='https://t4.ftcdn.net/jpg/04/75/00/99/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi.jpg'
+              //  src={user.photoURL}
+              alt="user_imge"
             />
           </a>
+        
+       
+            
           {/* Dropdown - User Information */}
           <div
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -9,8 +9,6 @@ const routes = [
   { path: "/Dashboard", exact: true, name: "Dashboard", component: Dashboard },
   { path: "/Dashboard/MyProfile", name: "MyProfile", component: MyProfile }, 
  
-
-
 ];
 
 export default routes;

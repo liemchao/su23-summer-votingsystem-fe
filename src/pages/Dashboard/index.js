@@ -3,92 +3,71 @@ import CardInfo from "../../components/Cards/Info";
 
 import PageHeading from "../../components/PageHeading";
 
-import { Link, Redirect } from "react-router-dom";
-import ApiService from "../../api/apiService";
+// import { Link, Redirect } from "react-router-dom";
+// import ApiService from "../../api/apiService";
+
 
 
 const Dashboard = () => {
 
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  // const user = JSON.parse(localStorage.getItem("user"));
 
 
 
 
-  useEffect(() => {
-    if (!user || user.Roles === "") {
-      return <Redirect to="/Login" />;
+  // useEffect(() => {
+  //   if (!user || user.Roles === "") {
+  //     return <Redirect to="/Login" />;
 
-    } else {
+  //   } else {
       
-    }
-  }, []);
+  //   }
+  // }, []);
 
 
 
   return (
     <>
-      {(user.role.includes("Moderator")) && (
+      {/* {(user.role.includes("Moderator")) && ( */}
         <>
           <PageHeading title="Performance dasboard" />
 
         
 
             <div className="row">
+                  <CardInfo
+                    title="Earnings (Monthly)"
+                    icon="calendar"
+                    color="primary"
+                    value="$40,000"
+                  />
 
-              <div className="col-lg-5">
-                <div className="card">
-                  <div className="card-body">
-                    <Link style={{ textDecoration: "none" }} to="/Dashboard/Manager/AccountList">
-                      <CardInfo
-                        title="Lead (To Customer)"
-                        icon="calendar"
-                        color="primary"
-                        com=":1"
-                      >
-                      </CardInfo>
-                    </Link>
-                    <Link style={{ textDecoration: "none" }}
-                      to="/Dashboard/Manager/KPIList">
+                  <CardInfo
+                    title="Earnings (Annual)"
+                    icon="calendar"
+                    color="success"
+                    value="215,000"
+                  />
 
-                      <CardInfo
+                  <CardInfo
+                    title="Tasks"
+                    icon="clipboard"
+                    color="info"
+                    value="50%"
+                  />
 
-                        title="Revenue"
-                        icon="calendar"
-                        color="primary"
-                      >
-
-                      </CardInfo>
-                    </Link>
-
-
-                    <Link style={{ textDecoration: "none" }}
-                      to="/Dashboard/Manager/OpportunityList">
-                      <CardInfo
-                        title="Negotiation"
-                        icon="calendar"
-                        color="dark"
-                      />
-                    </Link>
-                    <Link style={{ textDecoration: "none" }}
-                      to="/Dashboard/Manager/OpportunityList">
-                      <CardInfo title="Wins" icon="clipboard" color="info"  />
-                    </Link>
-                    <Link style={{ textDecoration: "none" }}
-                      to="/Dashboard/Manager/OpportunityList">
-                      <CardInfo
-                        title="Loses"
-                        icon="comments"
-                        color="danger"
-                       
-                      />
-                    </Link>
-                  </div>
+                  <CardInfo
+                    title="Pending Requests"
+                    icon="comments"
+                    color="warning"
+                    value="18"
+                  />
                 </div>
-              </div>
 
-              <div className="col-lg-7">
+              {/* <div className="col-lg-7">
                 <div className="card">
                   <div className="card-body">
                   <Link style={{ textDecoration: "none" }}
@@ -133,8 +112,7 @@ const Dashboard = () => {
                   </div>
 
                 </div>
-              </div>
-            </div>
+              </div> */}
 
 
 
@@ -144,11 +122,10 @@ const Dashboard = () => {
 
         </>
 
-      )}
+      {/* // )} */}
 
-      {(user.role.includes("Admin")) && (
+      {/* {(user.role.includes("Admin")) && ( */}
         <>
-          <PageHeading title="Account dashboard" />
 
         
 
@@ -156,7 +133,7 @@ const Dashboard = () => {
 
         </>
 
-      )}
+      {/* )} */}
 
 
     </>
