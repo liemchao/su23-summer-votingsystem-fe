@@ -15,14 +15,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Topbar = () => {
   const history = useHistory();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // Người dùng đã đăng nhập
         setUser(user);
-        console.log(user.multiFactor.user.accessToken)
+        console.log(user)
       } else {
       //   // Người dùng đã đăng xuất
       //   setUser(null);
@@ -103,7 +103,7 @@ const Topbar = () => {
         {/* User Information */}
        
         <li className="nav-item dropdown no-arrow">
-       
+
           <a
             className="nav-link dropdown-toggle"
             href="/#"
@@ -114,13 +114,12 @@ const Topbar = () => {
             aria-expanded="false"
           >
           
-            <span className="mr-2 d-none d-lg-inline text-gray-600 small">Emailse140xx.fpt.com
-              {/* {user.email} */}
+            <span className="mr-2 d-none d-lg-inline text-gray-600 small">
+              {user.email}
             </span>
             <img
               className="img-profile rounded-circle"
-              src='https://t4.ftcdn.net/jpg/04/75/00/99/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi.jpg'
-              //  src={user.photoURL}
+               src={user.photoURL}
               alt="user_imge"
             />
           </a>
